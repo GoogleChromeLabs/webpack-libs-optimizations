@@ -34,16 +34,16 @@ If you compile your code with Babel and `babel-preset-env`, add [the `useBuiltIn
 ```json
 // .babelrc
 {
-    "presets": [
-        [
-            "env",
-            {
-                "targets": {
-                    "browsers": ["last 2 versions", "ie >= 11"]
-                }
-            }
-        ]
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions", "ie >= 11"]
+        }
+      }
     ]
+  ]
 }
 ```
 
@@ -96,11 +96,11 @@ To avoid this, alias the `lodash-es` package to `lodash`:
 ```js
 // webpack.config.js
 module.exports = {
-    resolve: {
-        alias: {
-            'lodash-es': 'lodash',
-        },
+  resolve: {
+    alias: {
+      'lodash-es': 'lodash',
     },
+  },
 };
 ```
 
