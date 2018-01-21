@@ -2,7 +2,7 @@
 
 Using a library in your webpack project? Use these tips to make your bundle smaller!
 
-Have something to contibute? Make a pull request!
+Want to add a tip? See [the contribution guide](/CONTRIBUTING.md) and make a pull request!
 
 Contents:
 
