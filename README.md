@@ -128,7 +128,7 @@ Moment.js is a library for working with dates. [npm package](https://www.npmjs.c
 
 By default, Moment.js ships with 160+ minified KBs of localization files. If you app is only available in a few languages, you won’t need all these files. Use [`moment-locales-webpack-plugin`](https://github.com/iamakulov/moment-locales-webpack-plugin) to remove the unused ones.
 
-**Use the plugin with cautio.** The default settings remove all locales; this might break your app if you use some of them.
+**Use the plugin with caution.** The default settings remove all locales; this might break your app if you use some of them.
 
 ## react
 
