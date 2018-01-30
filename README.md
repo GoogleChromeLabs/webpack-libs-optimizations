@@ -34,16 +34,16 @@ If you compile your code with Babel and `babel-preset-env`, add [the `useBuiltIn
 ```json
 // .babelrc
 {
-  "presets": [
-    [
-      "env",
-      {
-        "targets": {
-          "browsers": ["last 2 versions", "ie >= 11"]
-        }
-      }
+    "presets": [
+        [
+            "env",
+            {
+                "targets": {
+                    "browsers": ["last 2 versions", "ie >= 11"]
+                }
+            }
+        ]
     ]
-  ]
 }
 ```
 
@@ -96,11 +96,11 @@ To avoid this, alias the `lodash-es` package to `lodash`:
 ```js
 // webpack.config.js
 module.exports = {
-  resolve: {
-    alias: {
-      'lodash-es': 'lodash',
+    resolve: {
+        alias: {
+            'lodash-es': 'lodash',
+        },
     },
-  },
 };
 ```
 
@@ -169,3 +169,7 @@ There’s [`babel-plugin-styled-components`](https://github.com/styled-component
 [`unfetch`](https://github.com/developit/unfetch) is a 500 bytes polyfill for `window.fetch()`. Unlike `whatwg-fetch`, it doesn’t support the full `window.fetch()` API, but instead focuses on polyfilling the most used parts.
 
 **Migrate to `unfetch` with caution.** While it supports the most popular API parts, your app might break if it relies on something less common.
+
+# License
+
+Copyright 2018 Google Inc. All Rights Reserved. Licensed under [the Apache License, Version 2.0](/LICENSE).
