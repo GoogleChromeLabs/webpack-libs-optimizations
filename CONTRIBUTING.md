@@ -34,7 +34,7 @@ Here’s what each part means:
 * `HOW TO ENABLE` is either:
     * `[How to enable](LINK)` – a link to a page that describes how to enable the tip (e.g. a link to webpack plugin docs that describe enabling the plugin) or
     * `How to enable is ↓` if there’re no corresponding docs (in this case, describe the necessary steps in the text)
-* `AUTHOR` and `AUTHOR LINK` is your twitter username/name/whatever.
+* `AUTHOR` and `AUTHOR LINK` is your name, twitter username, or whatever.
 * `TIP TEXT` is the text of the tip.
 
 # 3. Prepare for publishing
