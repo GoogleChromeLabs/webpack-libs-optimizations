@@ -14,6 +14,7 @@ Contents:
 * [`react`](#react)
 * [`styled-components`](#styled-components)
 * [`whatwg-fetch`](#whatwg-fetch)
+* [`Unspecific Libraries`](#babel-plugin-transform-imports)
 
 ## babel-polyfill
 
@@ -169,6 +170,24 @@ There’s [`babel-plugin-styled-components`](https://github.com/styled-component
 [`unfetch`](https://github.com/developit/unfetch) is a 500 bytes polyfill for `window.fetch()`. Unlike `whatwg-fetch`, it doesn’t support the full `window.fetch()` API, but instead focuses on polyfilling the most used parts.
 
 **Migrate to `unfetch` with caution.** While it supports the most popular API parts, your app might break if it relies on something less common.
+
+## Unspecific Libraries
+
+Of course, there are also optimization tips for other libaries too. You can use them with common sense to get smaller / more performant bundles.
+
+### `babel-plugin-transform-imports`
+
+> ✅ Safe to use by default / [How to enable](https://www.npmjs.com/package/babel-plugin-transform-imports) / Added by [@kurtextrem](https://twitter.com/kurtextrem)
+
+This handy babel plugin will transform your imports to only import specific components, which ensures not the whole library gets included (if tree-shaking is missing or unavailable).
+```js
+// Before
+import { Grid, Row, Col } from 'react-bootstrap';
+// After
+import Grid from 'react-bootstrap/lib/Grid';
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
+```
 
 # License
 
