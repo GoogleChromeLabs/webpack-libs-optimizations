@@ -8,13 +8,17 @@ Contents:
 
 * [`babel-polyfill`](#babel-polyfill)
 * [`core-js`](#core-js)
+* [`history`](#history)
 * [`lodash`](#lodash)
 * [`lodash-es`](#lodash-es)
 * [`moment`](#moment)
 * [`react`](#react)
+* [`reactstrap`](#reactstrap)
+* [`react-bootstrap`](#react-bootstrap)
+* [`react-rooter`](#react-rooter)
 * [`styled-components`](#styled-components)
 * [`whatwg-fetch`](#whatwg-fetch)
-* [`Unspecific Libraries`](#babel-plugin-transform-imports)
+* [`Solutions that work with multiple libraries`](#solutions-that-work-with-multiple-libraries)
 
 ## babel-polyfill
 
@@ -55,6 +59,10 @@ enabling `useBuiltIns: true` will remove polyfills for all features that Interne
 > ✅ Safe to use by default / [How to enable](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/) / Added by [@iamakulov](https://twitter.com/iamakulov)
 
 All browsers that support `<script type="module">` also support modern JS features like `async`/`await`, arrow functions and classes. Use this feature to build two versions of the bundle and make modern browsers load only the modern code. For the guide, see [the Philip Walton’s article](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/).
+
+## history
+
+### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
 
 ## lodash
 
@@ -171,15 +179,27 @@ There’s [`babel-plugin-styled-components`](https://github.com/styled-component
 
 **Migrate to `unfetch` with caution.** While it supports the most popular API parts, your app might break if it relies on something less common.
 
-## Unspecific Libraries
+## reactstrap
 
-Of course, there are also optimization tips for other libaries too. You can use them with common sense to get smaller / more performant bundles.
+### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
+
+## react-bootstrap
+
+### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
+
+## react-router
+
+### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
+
+## Solutions that work with multiple libraries
+
+Of course, there are also optimization tips for other libaries too. You can use them with common sense to get smaller or more performant bundles.
 
 ### `babel-plugin-transform-imports`
 
-> ✅ Safe to use by default / [How to enable](https://www.npmjs.com/package/babel-plugin-transform-imports) / Added by [@kurtextrem](https://twitter.com/kurtextrem)
+> ✅ Safe to use by default / [How to enable](https://www.npmjs.com/package/babel-plugin-transform-imports) / Added by [@kurtextrem](https://twitter.com/kurtextrem) / More Insight about this on [Twitter](https://twitter.com/iamakulov/status/962991382213398529)
 
-This handy babel plugin will transform your imports to only import specific components, which ensures not the whole library gets included (if tree-shaking is missing or unavailable).
+This handy babel plugin will transform your imports to only import specific components, which ensures not the whole library gets included (if tree-shaking is ineffective for the specific library).
 ```js
 // Before
 import { Grid, Row, Col } from 'react-bootstrap';
