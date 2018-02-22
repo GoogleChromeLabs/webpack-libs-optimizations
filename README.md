@@ -24,7 +24,7 @@ Contents:
 
 `babel-polyfill` is a Babel’s package that loads `core-js` and a custom regenerator runtime. [Babel docs](https://babeljs.io/docs/usage/polyfill/) · [npm package](https://www.npmjs.com/package/babel-polyfill)
 
-For the list of optimizations, see [the `core-js` section](#core-js).
+For the list of optimizations, see [the `core-js` section ⤵](#core-js).
 
 ## core-js
 
@@ -61,6 +61,8 @@ enabling `useBuiltIns: true` will remove polyfills for all features that Interne
 All browsers that support `<script type="module">` also support modern JS features like `async`/`await`, arrow functions and classes. Use this feature to build two versions of the bundle and make modern browsers load only the modern code. For the guide, see [the Philip Walton’s article](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/).
 
 ## history
+
+History is a library for managing session history in JS. [npm package](https://www.npmjs.com/package/history)
 
 ### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
 
@@ -125,7 +127,7 @@ module.exports = {
 
 `lodash-es` is Lodash with ES imports and exports. [npm package](https://www.npmjs.com/package/lodash-es)
 
-For the list of optimizations, see [the `lodash` section](#lodash).
+For the list of optimizations, see [the `lodash` section ⤴](#lodash).
 
 ## moment
 
@@ -159,13 +161,19 @@ React doesn’t perform `propTypes` checks in production, but the `propTypes` de
 
 ## reactstrap
 
+Reactstrap is a Bootstrap 4 library for React. [npm package](https://www.npmjs.com/package/reactstrap)
+
 ### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
 
 ## react-bootstrap
 
+`react-bootstrap` is a Bootstrap 3 library for React. [npm package](https://www.npmjs.com/package/react-bootstrap)
+
 ### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
 
 ## react-router
+
+React Router is a popular router solution for React. [npm package](https://www.npmjs.com/package/react-router)
 
 ### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
 
