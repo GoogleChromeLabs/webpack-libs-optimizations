@@ -8,7 +8,6 @@ Contents:
 
 * [`babel-polyfill`](#babel-polyfill)
 * [`core-js`](#core-js)
-* [`history`](#history)
 * [`lodash`](#lodash)
 * [`lodash-es`](#lodash-es)
 * [`moment`](#moment)
@@ -59,12 +58,6 @@ enabling `useBuiltIns: true` will remove polyfills for all features that Interne
 > ✅ Safe to use by default / [How to enable](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/) / Added by [@iamakulov](https://twitter.com/iamakulov)
 
 All browsers that support `<script type="module">` also support modern JS features like `async`/`await`, arrow functions and classes. Use this feature to build two versions of the bundle and make modern browsers load only the modern code. For the guide, see [the Philip Walton’s article](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/).
-
-## history
-
-History is a library for managing session history in JS. [npm package](https://www.npmjs.com/package/history)
-
-### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
 
 ## lodash
 
@@ -163,19 +156,105 @@ React doesn’t perform `propTypes` checks in production, but the `propTypes` de
 
 Reactstrap is a Bootstrap 4 library for React. [npm package](https://www.npmjs.com/package/reactstrap)
 
-### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
+### Remove unused modules with `babel-plugin-transform-imports`
+
+> ✅ Safe to use by default / How to enable is ↓ / Added by [@kurtextrem](https://twitter.com/kurtextrem)
+
+When you import a module from Reactstrap:
+
+```js
+import { Alert } from 'reactstrap';
+```
+
+other Reactstrap modules also get bundled into the app and make it larger.
+
+Use [`babel-plugin-transform-imports`](https://www.npmjs.com/package/babel-plugin-transform-imports) to strip unused modules:
+
+```json
+// .babelrc
+{
+  "plugins": [
+    ["transform-imports", {
+      "reactstrap": {
+        "transform": "reactstrap/lib/${member}",
+        "preventFullImport": true
+      }
+    }]
+  ]
+}
+```
+
+To see how it works, check [the `babel-plugin-transform-imports` section ⤵️](#babel-plugin-transform-imports).
 
 ## react-bootstrap
 
 `react-bootstrap` is a Bootstrap 3 library for React. [npm package](https://www.npmjs.com/package/react-bootstrap)
 
-### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
+### Remove unused modules with `babel-plugin-transform-imports`
+
+> ✅ Safe to use by default / How to enable is ↓ / Added by [@kurtextrem](https://twitter.com/kurtextrem)
+
+When you import a module from `react-bootstrap`:
+
+```js
+import { Alert } from 'react-bootstrap';
+```
+
+other `react-bootstrap` modules also get bundled into the app and make it larger.
+
+Use [`babel-plugin-transform-imports`](https://www.npmjs.com/package/babel-plugin-transform-imports) to strip unused modules:
+
+```json
+// .babelrc
+{
+  "plugins": [
+    ["transform-imports", {
+      "react-bootstrap": {
+        "transform": "react-bootstrap/lib/${member}",
+        "preventFullImport": true
+      }
+    }]
+  ]
+}
+```
+
+To see how it works, check [the `babel-plugin-transform-imports` section ⤵️](#babel-plugin-transform-imports).
 
 ## react-router
 
 React Router is a popular router solution for React. [npm package](https://www.npmjs.com/package/react-router)
 
-### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
+### Remove unused modules with `babel-plugin-transform-imports`
+
+> ✅ Safe to use by default / How to enable is ↓ / Added by [@kurtextrem](https://twitter.com/kurtextrem)
+
+When you import a module from React Router:
+
+```js
+import { withRouter } from 'react-router';
+```
+
+other React Router modules also get bundled into the app and make it larger.
+
+Use [`babel-plugin-transform-imports`](https://www.npmjs.com/package/babel-plugin-transform-imports) to strip unused modules:
+
+```json
+// .babelrc
+{
+  "plugins": [
+    ["transform-imports", {
+      "react-router": {
+        "transform": "react-router/${member}",
+        "preventFullImport": true
+      }
+    }]
+  ]
+}
+```
+
+(This was tested with React Router v4.)
+
+To see how it works, check [the `babel-plugin-transform-imports` section ⤵️](#babel-plugin-transform-imports).
 
 ## styled-components
 
