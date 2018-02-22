@@ -15,10 +15,10 @@ Contents:
 * [`react`](#react)
 * [`reactstrap`](#reactstrap)
 * [`react-bootstrap`](#react-bootstrap)
-* [`react-rooter`](#react-rooter)
+* [`react-router`](#react-router)
 * [`styled-components`](#styled-components)
 * [`whatwg-fetch`](#whatwg-fetch)
-* [`Solutions that work with multiple libraries`](#solutions-that-work-with-multiple-libraries)
+* [Solutions that work with multiple libraries](#solutions-that-work-with-multiple-libraries)
 
 ## babel-polyfill
 
@@ -157,6 +157,18 @@ React doesn’t perform `propTypes` checks in production, but the `propTypes` de
 
 **Migrate to Preact with caution.** Preact is not 100% compatible with React – i.e. it doesn’t support synthetic events and [some React 16 features](https://github.com/developit/preact-compat/issues/432). However, many projects still can be migrated without any codebase changes. See [the migration guide](https://preactjs.com/guide/switching-to-preact).
 
+## reactstrap
+
+### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
+
+## react-bootstrap
+
+### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
+
+## react-router
+
+### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
+
 ## styled-components
 
 `styled-components` is a CSS-in-JS library. [npm package](https://www.npmjs.com/package/styled-components)
@@ -178,18 +190,6 @@ There’s [`babel-plugin-styled-components`](https://github.com/styled-component
 [`unfetch`](https://github.com/developit/unfetch) is a 500 bytes polyfill for `window.fetch()`. Unlike `whatwg-fetch`, it doesn’t support the full `window.fetch()` API, but instead focuses on polyfilling the most used parts.
 
 **Migrate to `unfetch` with caution.** While it supports the most popular API parts, your app might break if it relies on something less common.
-
-## reactstrap
-
-### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
-
-## react-bootstrap
-
-### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
-
-## react-router
-
-### [`babel-plugin-transform-imports`⤵️](#babel-plugin-transform-imports)
 
 ## Solutions that work with multiple libraries
 
