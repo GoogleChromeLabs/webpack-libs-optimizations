@@ -6,6 +6,8 @@ Want to add a tip? See [the contribution guide](/CONTRIBUTING.md) and make a pul
 
 Contents:
 
+* [`async`](#async)
+* [`async-es`](#async-es)
 * [`babel-polyfill`](#babel-polyfill)
 * [`core-js`](#core-js)
 * [`lodash`](#lodash)
@@ -19,6 +21,62 @@ Contents:
 * [`whatwg-fetch`](#whatwg-fetch)
 * [Solutions that work with multiple libraries](#solutions-that-work-with-multiple-libraries)
 
+## async
+
+`async` is a collection of utilities for working with async functions. [npm package](https://www.npmjs.com/package/async)
+
+Generally, you should use [the `async-es` package ⤵](#async-es) instead. It ships with ES modules and is more optimized for bundling with webpack.
+
+Still, even if prefer to use `async`, for the list of optimizations, see [the `async-es` section ⤵](#async-es).
+
+## async-es
+
+`async-es` is a collection of utilities for working with async functions. It’s the same package as [`async` ⤴](#async), but it’s more optimized for bundling with webpack. [npm package](https://www.npmjs.com/package/async-es)
+
+### Remove unused methods with `babel-plugin-lodash`
+
+> ✅ Safe to use by default / How to enable is ↓ / Added by [@iamakulov](https://twitter.com/iamakulov)
+
+If you use `async-es` as a single import, you’re bundling the whole library into the application – even if you only use a couple of its methods:
+
+```js
+// You only use `async.map`, but the whole library gets bundled
+import async from 'async-es';
+
+async.map(['file1', 'file2', 'file3'], fs.stat, function(err, results) {
+    console.log(results);
+});
+```
+
+Use [`babel-plugin-lodash`](https://github.com/lodash/babel-plugin-lodash) to pick only those `async-es` methods you need:
+
+```js
+// Before Babel is applied
+import async from 'async-es';
+
+async.map(['file1', 'file2', 'file3'], fs.stat, function(err, results) {
+    console.log(results);
+});
+
+↓
+
+// After Babel is applied
+import _map from 'async-es/map';
+
+_map(['file1', 'file2', 'file3'], fs.stat, function(err, results) {
+    console.log(results);
+});
+```
+
+Enable this plugin as follows:
+
+```json
+// .babelrc
+{
+  "plugins": [["lodash", { "id": ["async-es"] }]],
+}
+```
+
 ## babel-polyfill
 
 `babel-polyfill` is a Babel’s package that loads `core-js` and a custom regenerator runtime. [Babel docs](https://babeljs.io/docs/usage/polyfill/) · [npm package](https://www.npmjs.com/package/babel-polyfill)
@@ -31,7 +89,7 @@ For the list of optimizations, see [the `core-js` section ⤵](#core-js).
 
 ### Remove unnecessary polyfills with `babel-preset-env`
 
-> ✅ Safe to use by default / [How to enable](https://github.com/lodash/babel-plugin-lodash) / Added by [@iamakulov](https://twitter.com/iamakulov)
+> ✅ Safe to use by default / [How to enable](https://babeljs.io/docs/plugins/preset-env/#usebuiltins) / Added by [@iamakulov](https://twitter.com/iamakulov)
 
 If you compile your code with Babel and `babel-preset-env`, add [the `useBuiltIns: true` option](https://babeljs.io/docs/plugins/preset-env/#usebuiltins). This option configures Babel to only include polyfills that are necessary for target browsers. I.e., if you target your app to support Internet Explorer 11:
 
