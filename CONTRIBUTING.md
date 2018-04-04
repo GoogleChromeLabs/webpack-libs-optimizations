@@ -1,4 +1,4 @@
-Thanks for contributing! To add a tip, follow these three easy steps.
+Thanks for wanting to contribute! To add a tip, follow these three easy steps.
 
 # 1. Choose the kind of the tip
 
