@@ -268,7 +268,7 @@ Use [`babel-plugin-transform-imports`](https://www.npmjs.com/package/babel-plugi
   "plugins": [
     ["transform-imports", {
       "react-bootstrap": {
-        "transform": "react-bootstrap/lib/${member}",
+        "transform": "react-bootstrap/es/${member}",
         "preventFullImport": true
       }
     }]
