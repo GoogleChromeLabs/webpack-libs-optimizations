@@ -44,7 +44,7 @@ If you use `async-es` as a single import, you’re bundling the whole library in
 import async from 'async-es';
 
 async.map(['file1', 'file2', 'file3'], fs.stat, function(err, results) {
-    console.log(results);
+  console.log(results);
 });
 ```
 
@@ -55,7 +55,7 @@ Use [`babel-plugin-lodash`](https://github.com/lodash/babel-plugin-lodash) to pi
 import async from 'async-es';
 
 async.map(['file1', 'file2', 'file3'], fs.stat, function(err, results) {
-    console.log(results);
+  console.log(results);
 });
 
 ↓
@@ -64,7 +64,7 @@ async.map(['file1', 'file2', 'file3'], fs.stat, function(err, results) {
 import _map from 'async-es/map';
 
 _map(['file1', 'file2', 'file3'], fs.stat, function(err, results) {
-    console.log(results);
+  console.log(results);
 });
 ```
 
@@ -96,16 +96,16 @@ If you compile your code with Babel and `babel-preset-env`, add [the `useBuiltIn
 ```json
 // .babelrc
 {
-    "presets": [
-        [
-            "env",
-            {
-                "targets": {
-                    "browsers": ["last 2 versions", "ie >= 11"]
-                }
-            }
-        ]
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions", "ie >= 11"]
+        }
+      }
     ]
+  ]
 }
 ```
 
@@ -127,22 +127,22 @@ Lodash is an utility library. [npm package](https://www.npmjs.com/package/lodash
 
 [`babel-plugin-lodash`](https://github.com/lodash/babel-plugin-lodash) replaces full imports of Lodash with imports of specific Lodash functions:
 
-```
-import _ from 'lodash'
-_.map([1, 2, 3], i => i + 1)
+```js
+import _ from 'lodash';
+_.map([1, 2, 3], i => i + 1);
 ```
 
 ↓
 
-```
-import _map from 'lodash/map'
-_map([1, 2, 3], i => i + 1)
+```js
+import _map from 'lodash/map';
+_map([1, 2, 3], i => i + 1);
 ```
 
 Note: the plugin doesn’t work with chain sequences – i.e. code like
 
-```
-_([1, 2, 3]).map(i => i + 1).value()
+```js
+_([1, 2, 3]).map(i => i + 1).value();
 ```
 
 won’t be optimized.
@@ -158,11 +158,11 @@ To avoid this, alias the `lodash-es` package to `lodash`:
 ```js
 // webpack.config.js
 module.exports = {
-    resolve: {
-        alias: {
-            'lodash-es': 'lodash',
-        },
+  resolve: {
+    alias: {
+      'lodash-es': 'lodash',
     },
+  },
 };
 ```
 
