@@ -10,6 +10,7 @@ Contents:
 * [`async-es`](#async-es)
 * [`babel-polyfill`](#babel-polyfill)
 * [`core-js`](#core-js)
+* [`date-fns`](#date-fns)
 * [`lodash`](#lodash)
 * [`lodash-es`](#lodash-es)
 * [`moment`](#moment)
@@ -116,6 +117,28 @@ enabling `useBuiltIns: true` will remove polyfills for all features that Interne
 > ✅ Safe to use by default / [How to enable](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/) / Added by [@iamakulov](https://twitter.com/iamakulov)
 
 All browsers that support `<script type="module">` also support modern JS features like `async`/`await`, arrow functions and classes. Use this feature to build two versions of the bundle and make modern browsers load only the modern code. For the guide, see [the Philip Walton’s article](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/).
+
+## date-fns
+
+date-fns is a date utility library. [npm package](https://www.npmjs.com/package/date-fns)
+
+### Enable `babel-plugin-date-fns`
+
+> ✅ Safe to use by default / [How to enable](https://github.com/date-fns/babel-plugin-date-fns) / Added by [@chentsulin](https://twitter.com/chentsulin)
+
+[`babel-plugin-date-fns`](https://github.com/date-fns/babel-plugin-date-fns) replaces full imports of date-fns with imports of specific date-fns functions:
+
+```js
+import { format } from 'date-fns';
+format(new Date(2014, 1, 11), 'MM/DD/YYYY');
+```
+
+↓
+
+```js
+import _format from 'date-fns/format';
+_format(new Date(2014, 1, 11), 'MM/DD/YYYY');
+```
 
 ## lodash
 
