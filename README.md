@@ -4,6 +4,8 @@ Using a library in your webpack project? Use these tips to make your bundle smal
 
 Want to add a tip? See [the contribution guide](/CONTRIBUTING.md) and make a pull request!
 
+<img src="https://i.imgur.com/tjFWoUj.png" width="600" />
+
 Contents:
 
 * [`async`](#async)
