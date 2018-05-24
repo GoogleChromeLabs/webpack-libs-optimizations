@@ -363,7 +363,7 @@ There’s [`babel-plugin-styled-components`](https://github.com/styled-component
 
 ## Solutions that work with multiple libraries
 
-Of course, there are also optimization tips for other libaries too. You can use them with common sense to get smaller or more performant bundles.
+Of course, there are also optimization tips for other libraries too. You can use them with common sense to get smaller or more performant bundles.
 
 ### `babel-plugin-transform-imports`
 
