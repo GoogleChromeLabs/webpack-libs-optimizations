@@ -227,13 +227,21 @@ React is a library for building user interfaces. [npm package](https://www.npmjs
 
 React doesn’t perform `propTypes` checks in production, but the `propTypes` declarations still occupy a part of the bundle. Use [`babel-plugin-transform-react-remove-prop-types`](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) to remove them from during building.
 
-### Replace with Preact
+### Migrate to an alternative React-like Library
 
-> ⚠ Use with caution / [How to migrate](https://preactjs.com/guide/switching-to-preact) / Added by [@iamakulov](https://twitter.com/iamakulov)
+> ⚠ Use with caution / Added by [@iamakulov](https://twitter.com/iamakulov) & [@kurtextrem](https://twitter.com/kurtextrem)
 
-[Preact](https://github.com/developit/preact) is a smaller React alternative with a similar API. Switching to it saves you 250 minified KBs (tested with `preact@8.2.7` + `preact-compat@3.17.0` vs. `react@16.2.0` + `react-dom@16.2.0`).
+There are alternatives to React, that share the same principle and similar APIs, but with a much tinier footprint or a lot higher performance. Mind you: Those don't support the anticipated "Suspension" and "Fiber" features from React.
 
-**Migrate to Preact with caution.** Preact is not 100% compatible with React – i.e. it doesn’t support synthetic events and [some React 16 features](https://github.com/developit/preact-compat/issues/432). However, many projects still can be migrated without any codebase changes. See [the migration guide](https://preactjs.com/guide/switching-to-preact).
+You can find a benchmark over here (use with caution and ymmv): https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts-results/table.html
+
+- [Preact](https://github.com/developit/preact) | smallest React alternative (switching to it saves you 250 minified KBs (tested with `preact@8.2.7` + `preact-compat@3.17.0` vs. `react@16.2.0` + `react-dom@16.2.0`)) | No synthetic events | IE8 supported with polyfills
+
+- [Inferno](https://github.com/infernojs/inferno) | smaller than React, larger than Preact (~8kb vs 3kb gziped) | Higher performance than React,  highest performance among all React alternatives and offers [manual optimization possibilitys](https://infernojs.org/docs/guides/optimizations) | Partial synthetic events | IE8 unsupported natively
+
+- [Nerv](https://github.com/NervJS/nerv) | smaller than React, larger than Preact and Inferno (9kb gziped) | The goal of Nerv is to have 100% the same API (without Fiber and Suspense), see [this](https://github.com/NervJS/nerv/issues/10) issue for details | IE8 supported
+
+**Migrate to alternatives with caution.** Some of the alternatives don’t have synthetic events or are lacking some React 16 features ([Preact](https://github.com/developit/preact-compat/issues/432), [Inferno](https://github.com/infernojs/inferno/issues/501), [Nerv](https://github.com/NervJS/nerv/issues/5)). However, many projects still can be migrated without any codebase changes. See the migration guides: [Preact](https://preactjs.com/guide/switching-to-preact), [Inferno](https://infernojs.org/docs/guides/switching-to-inferno), [Nerv](https://github.com/NervJS/nerv#switching-to-nerv-from-react).
 
 ## reactstrap
 
