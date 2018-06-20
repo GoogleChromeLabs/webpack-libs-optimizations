@@ -229,8 +229,14 @@ React doesn’t perform `propTypes` checks in production, but the `propTypes` de
 
 ### A word on [`babel-react-optimize`](https://github.com/jamiebuilds/babel-react-optimize)
 
+> ❌ Not safe to use / Why ↓ / Added by [@kurtextrem](https://twitter.com/kurtextrem) / [Join the discussion](https://github.com/GoogleChromeLabs/webpack-libs-optimizations/issues/9)
+
 You might or might not have heard about [`babel-react-optimize`](https://github.com/jamiebuilds/babel-react-optimize), it offers bundeled optimizations for React (and alternatives).
 However, we do not recommend to use the bundle, see [here](https://github.com/facebook/create-react-app/issues/553#issuecomment-359196326) for why. TL;DR: It hurts TTI. In the linked comment, a React Dev elaborates this and explains why those are disabled in `create-react-app`.
+
+### [`transform-react-pure-class-to-function`](https://github.com/jamiebuilds/babel-react-optimize/tree/master/packages/babel-plugin-transform-react-pure-class-to-function)
+
+> ✅ Safe to use by default / How to enable is ↓ / Added by [@kurtextrem](https://twitter.com/kurtextrem)
 
 However, what we do recommend is: [`transform-react-pure-class-to-function`](https://github.com/jamiebuilds/babel-react-optimize/tree/master/packages/babel-plugin-transform-react-pure-class-to-function) which saves quite some bytes.
 
