@@ -227,6 +227,24 @@ React is a library for building user interfaces. [npm package](https://www.npmjs
 
 React doesn’t perform `propTypes` checks in production, but the `propTypes` declarations still occupy a part of the bundle. Use [`babel-plugin-transform-react-remove-prop-types`](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) to remove them from during building.
 
+### A word on [`babel-react-optimize`](https://github.com/jamiebuilds/babel-react-optimize)
+
+You might or might not have heard about [`babel-react-optimize`](https://github.com/jamiebuilds/babel-react-optimize), it offers bundeled optimizations for React (and alternatives).
+However, we do not recommend to use the bundle, see [here](https://github.com/facebook/create-react-app/issues/553#issuecomment-359196326) for why. TL;DR: It hurts TTI. In the linked comment, a React Dev elaborates this and explains why those are disabled in `create-react-app`.
+
+However, what we do recommend is: [`transform-react-pure-class-to-function`](https://github.com/jamiebuilds/babel-react-optimize/tree/master/packages/babel-plugin-transform-react-pure-class-to-function) which saves quite some bytes.
+
+To install, add it to your Babel config:
+
+```json
+// .babelrc
+{
+  "plugins": [
+    "babel-plugin-transform-react-pure-class-to-function"
+  ]
+}
+```
+
 ### Replace with Preact
 
 > ⚠ Use with caution / [How to migrate](https://preactjs.com/guide/switching-to-preact) / Added by [@iamakulov](https://twitter.com/iamakulov)
