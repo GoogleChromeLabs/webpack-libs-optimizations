@@ -231,17 +231,15 @@ React doesn’t perform `propTypes` checks in production, but the `propTypes` de
 
 > ⚠ Use with caution / Added by [@iamakulov](https://twitter.com/iamakulov) & [@kurtextrem](https://twitter.com/kurtextrem)
 
-There are alternatives to React, that share the same principle and similar APIs, but with a much tinier footprint or a lot higher performance. Mind you: Those don't support the anticipated "Suspension" and "Fiber" features from React.
+There are alternatives to React with a similar API that have a smaller size or a higher performance, but lack some features (e.g., fragments, portals, or synthetic events).
 
-You can find a benchmark over here (use with caution and ymmv): https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts-results/table.html
+- [Preact](https://github.com/developit/preact) | The smallest React alternative (`preact@8.3.1` + `preact-compat@3.18.3` is 7.6 kB gzipped; `react@16.4.0` + `react-dom@16.4.0` is 31.4 kB gzipped) | No synthetic events | IE8 supported with polyfills
 
-- [Preact](https://github.com/developit/preact) | smallest React alternative (switching to it saves you 250 minified KBs (tested with `preact@8.2.7` + `preact-compat@3.17.0` vs. `react@16.2.0` + `react-dom@16.2.0`)) | No synthetic events | IE8 supported with polyfills
+- [Nerv](https://github.com/NervJS/nerv) | Smaller than React, larger than Preact (`nervjs@1.3.3` is 9.8 kB gzipped, compat is not neede; `react@16.4.0` + `react-dom@16.4.0` is 31.4 kB gzipped) | The goal of Nerv is to have 100% the same API (without Fiber and Suspense), see [NervJS/nerv#10](https://github.com/NervJS/nerv/issues/10#issuecomment-356913486) for details | IE8 supported
 
-- [Inferno](https://github.com/infernojs/inferno) | smaller than React, larger than Preact (~8kb vs 3kb gziped) | Higher performance than React,  highest performance among all React alternatives and offers [manual optimization possibilitys](https://infernojs.org/docs/guides/optimizations) | Partial synthetic events | IE8 unsupported natively
+- [Inferno](https://github.com/infernojs/inferno) | Smaller than React, larger than Preact and Nerv (`inferno@5.4.2` + `inferno-compat@5.4.2` is 11.3 kB gzipped; `react@16.4.0` + `react-dom@16.4.0` is 31.4 kB gzipped) | Higher runtime performance than React, the highest performance among all React alternatives, [manual optimization possibilities offered](https://infernojs.org/docs/guides/optimizations) | Partial synthetic events | IE8 unsupported natively
 
-- [Nerv](https://github.com/NervJS/nerv) | smaller than React, larger than Preact and Inferno (9kb gziped) | The goal of Nerv is to have 100% the same API (without Fiber and Suspense), see [this](https://github.com/NervJS/nerv/issues/10) issue for details | IE8 supported
-
-**Migrate to alternatives with caution.** Some of the alternatives don’t have synthetic events or are lacking some React 16 features ([Preact](https://github.com/developit/preact-compat/issues/432), [Inferno](https://github.com/infernojs/inferno/issues/501), [Nerv](https://github.com/NervJS/nerv/issues/5)). However, many projects still can be migrated without any codebase changes. See the migration guides: [Preact](https://preactjs.com/guide/switching-to-preact), [Inferno](https://infernojs.org/docs/guides/switching-to-inferno), [Nerv](https://github.com/NervJS/nerv#switching-to-nerv-from-react).
+**Migrate to alternatives with caution.** Some of the alternatives don’t have synthetic events or are lacking some React 16 features ([Preact issue](https://github.com/developit/preact-compat/issues/432), [Inferno issue](https://github.com/infernojs/inferno/issues/501), [Nerv issue](https://github.com/NervJS/nerv/issues/5)). However, many projects still can be migrated without any codebase changes. See the migration guides: [Preact](https://preactjs.com/guide/switching-to-preact), [Inferno](https://infernojs.org/docs/guides/switching-to-inferno), [Nerv](https://github.com/NervJS/nerv#switching-to-nerv-from-react).
 
 ## reactstrap
 
