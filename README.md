@@ -23,6 +23,8 @@ Contents:
 * [`styled-components`](#styled-components)
 * [`whatwg-fetch`](#whatwg-fetch)
 * [Solutions that work with multiple libraries](#solutions-that-work-with-multiple-libraries)
+    * [`babel-plugin-transform-imports`](#babel-plugin-transform-imports)
+    * [Templating languages: bundle just the runtime](#templating-languages-bundle-just-the-runtime)
 
 ## async
 
@@ -378,6 +380,44 @@ import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 ```
+
+### Templating languages: bundle just the runtime
+
+> ⚠ Use with caution / How to enable is ↓ / Added by [@danburzo](https://github.com/danburzo)
+
+Some libraries, such as [Handlebars](https://handlebarsjs.com/), [Ractive](https://ractive.js.org/) or [Vue](https://vuejs.org/), come with their own templating language. If you're importing templates files in your app using a Webpack loader ([handlebars-loader](https://github.com/pcardune/handlebars-loader), [ractive-loader](https://github.com/rstacruz/ractive-loader), etc.), you won't need the template-parsing part of the library in your bundle, as the templates will have been pre-compiled at build-time. Including just the _runtime_ — that is, the library without the template parser — depends on the library:
+
+Library | How to include the runtime
+------- | --------------------------
+Vue | The default package already includes just the runtime when you `import Vue from 'vue'`.
+Handlebars | Replace `import Handlebars from 'handlebars'` with `import Handlebars from 'handlebars/runtime'` or add an entry to `resolve.alias` in Webpack. 
+Ractive | Add an entry to `resolve.alias` in Webpack.
+
+The `resolve.alias` Webpack configuration helps you point the imports to the right file from the package:
+
+```js
+// webpack.config.js
+{
+  // ...
+  resolve: {
+    alias: {
+      // Tip: to locate the runtime for a library, look into its package folder
+      // for a Javascript file with `runtime` in its name.
+      ractive: path.resolve(__dirname, 'node_modules/ractive/runtime.min.js')
+    }
+  }
+  // ...
+}
+```
+
+...then import the library normally:
+
+```js
+// will include just the runtime
+import Ractive from 'ractive'; 
+```
+
+**Use this optimization with caution.** Make sure your code does not compile any templates on the fly, or your app will break. This happens whenever you pass template _strings_ to your library.
 
 # License
 
