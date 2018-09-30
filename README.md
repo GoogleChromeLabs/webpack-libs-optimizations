@@ -6,6 +6,14 @@ Want to add a tip? See [the contribution guide](/CONTRIBUTING.md) and make a pul
 
 <img src="https://i.imgur.com/tjFWoUj.png" width="600" />
 
+## New Solution - Post Compile
+
+If we want to optimize many libraries and do not want to add plugins like `babel-plugin-lodash`, maybe [webpack-post-compile-plugin](https://github.com/dolymood/webpack-post-compile-plugin) is a better solution.
+
+For each library only need to add `"postCompile": true` to `package.json`. Or add `"compileDependencies": ["xx-pkg", "yy-pkg"]` to `package.json`.
+
+For more details, see [cube-ui post compile](https://didi.github.io/cube-ui/#/en-US/docs/post-compile).
+
 Contents:
 
 * [`async`](#async)
