@@ -8,7 +8,7 @@ Want to add a tip? See [the contribution guide](/CONTRIBUTING.md) and make a pul
 
 Contents:
 
-* [New solution - Post Compile](#new-solution-post-compile)
+* [New solution - Post Compile](#new-solution---post-compile)
 * [`async`](#async)
 * [`async-es`](#async-es)
 * [`babel-polyfill`](#babel-polyfill)
