@@ -16,6 +16,7 @@ Contents:
 * [`lodash`](#lodash)
 * [`lodash-es`](#lodash-es)
 * [`moment`](#moment)
+* [`moment-timezone`](#moment-timezone)
 * [`react`](#react)
 * [`reactstrap`](#reactstrap)
 * [`react-bootstrap`](#react-bootstrap)
@@ -213,9 +214,21 @@ Moment.js is a library for working with dates. [npm package](https://www.npmjs.c
 
 > ⚠ Use with caution / [How to enable](https://github.com/iamakulov/moment-locales-webpack-plugin) / Added by [@iamakulov](https://twitter.com/iamakulov)
 
-By default, Moment.js ships with 160+ minified KBs of localization files. If you app is only available in a few languages, you won’t need all these files. Use [`moment-locales-webpack-plugin`](https://github.com/iamakulov/moment-locales-webpack-plugin) to remove the unused ones.
+By default, Moment.js ships with 160+ minified KBs of localization files. If your app is only available in a few languages, you won’t need all these files. Use [`moment-locales-webpack-plugin`](https://github.com/iamakulov/moment-locales-webpack-plugin) to remove the unused ones.
 
 **Use the plugin with caution.** The default settings remove all locales; this might break your app if you use some of them.
+
+## moment-timezone
+
+Moment Timezone is a plugin for Moment.js with full support for time zone calculations. [npm package](https://www.npmjs.com/package/moment-timezone)
+
+### Remove unused data with `moment-timezone-data-webpack-plugin`
+
+> ⚠ Use with caution / [How to enable](https://github.com/gilmoreorless/moment-timezone-data-webpack-plugin) / Added by [@iamnotyourbroom](https://twitter.com/iamnotyourbroom)
+
+By default, Moment Timezone includes as much time zone data as possible via a 900+ KB JSON file. In some cases this data includes dates in the 19th century. If your app can work with a smaller range of dates, or only needs specific time zones, most of that data is redundant. Use [`moment-timezone-data-webpack-plugin`](https://github.com/gilmoreorless/moment-timezone-data-webpack-plugin) to remove the unused data.
+
+**Use the plugin with caution.** Removing too much time zone data can cause subtle date calculation bugs. Make sure your app still has all the data it needs to function correctly.
 
 ## react
 
