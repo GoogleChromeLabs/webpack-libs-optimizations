@@ -368,6 +368,10 @@ To see how it works, check [the `babel-plugin-transform-imports` section ⤵️]
 
 There’s [`babel-plugin-styled-components`](https://github.com/styled-components/babel-plugin-styled-components) that minifies the CSS code you write with `styled-components`. See [the minification docs](https://www.styled-components.com/docs/tooling#minification).
 
+### Smaller alternative
+
+You can consider using [`goober`](https://github.com/cristianbote/goober), this library adds 1kb and offers the same syntax as `styled-components` through the use of a [babel-plugin](https://github.com/cristianbote/goober/tree/master/packages/babel-plugin-transform-goober).
+
 ## whatwg-fetch
 
 `whatwg-fetch` is a complete `window.fetch()` polyfill. [npm package](https://www.npmjs.com/package/whatwg-fetch)
