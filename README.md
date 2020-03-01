@@ -8,6 +8,7 @@ Want to add a tip? See [the contribution guide](/CONTRIBUTING.md) and make a pul
 
 Contents:
 
+* [New solution - Post Compile](#new-solution---post-compile)
 * [`async`](#async)
 * [`async-es`](#async-es)
 * [`babel-polyfill`](#babel-polyfill)
@@ -28,6 +29,14 @@ Contents:
 * [Solutions that work with multiple libraries](#solutions-that-work-with-multiple-libraries)
     * [`babel-plugin-transform-imports`](#babel-plugin-transform-imports)
     * [Templating languages: bundle just the runtime](#templating-languages-bundle-just-the-runtime)
+
+## New solution - Post Compile
+
+If we want to optimize many libraries and do not want to add plugins like `babel-plugin-lodash`, maybe [webpack-post-compile-plugin](https://github.com/dolymood/webpack-post-compile-plugin) is a better solution.
+
+For each library only need to add `"postCompile": true` to `package.json`. Or add `"compileDependencies": ["xx-pkg", "yy-pkg"]` to `package.json`.
+
+For more details, see [cube-ui post compile](https://didi.github.io/cube-ui/#/en-US/docs/post-compile).
 
 ## async
 
