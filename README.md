@@ -25,6 +25,8 @@ Contents:
 * [`react-router`](#react-router)
 * [`styled-components`](#styled-components)
 * [`whatwg-fetch`](#whatwg-fetch)
+* [`react-lifecycles-compat`](#react-lifecycles-compat)
+* [`create-react-context`](#create-react-context)
 * [Solutions that work with multiple libraries](#solutions-that-work-with-multiple-libraries)
     * [`babel-plugin-transform-imports`](#babel-plugin-transform-imports)
     * [Templating languages: bundle just the runtime](#templating-languages-bundle-just-the-runtime)
@@ -449,6 +451,35 @@ There’s [`babel-plugin-styled-components`](https://github.com/styled-component
 [`unfetch`](https://github.com/developit/unfetch) is a 500 bytes polyfill for `window.fetch()`. Unlike `whatwg-fetch`, it doesn’t support the full `window.fetch()` API, but instead focuses on polyfilling the most used parts.
 
 **Migrate to `unfetch` with caution.** While it supports the most popular API parts, your app might break if it relies on something less common.
+ 
+## react-lifecycles-compat
+## create-react-context
+
+If in your application you are using latest version of React (16.4+) you don't need these polyfills.
+But probably some of your dependencies are using them, so they can keep support older versions of React.
+
+Create a file like this: 
+```javascript
+// alias.js
+export { createContext as default } from 'react';
+
+export function polyfill(Component) {
+  return Component;
+}
+```
+And change your webpack.config.js
+```js
+// webpack.config.js
+module.exports = {
+  resolve: {
+    alias: {
+      'create-react-context': require.resolve('./alias'),
+      'react-lifecycles-compat': require.resolve('./alias'),
+    },
+  },
+};
+```
+It will save ~5kb of useless code from your bundle
 
 ## Solutions that work with multiple libraries
 
