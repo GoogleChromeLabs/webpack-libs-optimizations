@@ -370,7 +370,7 @@ There’s [`babel-plugin-styled-components`](https://github.com/styled-component
 
 ### Smaller alternative
 
-> ✅ Safe to use by default / How to enable is ↓ / Added by [@iamakulov](https://twitter.com/iamakulov)
+> ✅ Safe to use by default / How to enable is ↓ / Added by [@JoviDeCroock](https://twitter.com/JoviDec)
 
 Consider using [`goober`](https://github.com/cristianbote/goober), this library adds 1kb and offers the same syntax as `styled-components` through the use of a [babel-plugin](https://github.com/cristianbote/goober/tree/master/packages/babel-plugin-transform-goober).
 
