@@ -370,7 +370,15 @@ There’s [`babel-plugin-styled-components`](https://github.com/styled-component
 
 ### Smaller alternative
 
-You can consider using [`goober`](https://github.com/cristianbote/goober), this library adds 1kb and offers the same syntax as `styled-components` through the use of a [babel-plugin](https://github.com/cristianbote/goober/tree/master/packages/babel-plugin-transform-goober).
+> ✅ Safe to use by default / How to enable is ↓ / Added by [@iamakulov](https://twitter.com/iamakulov)
+
+Consider using [`goober`](https://github.com/cristianbote/goober), this library adds 1kb and offers the same syntax as `styled-components` through the use of a [babel-plugin](https://github.com/cristianbote/goober/tree/master/packages/babel-plugin-transform-goober).
+
+```sh
+npm i goober babel-plugin-transform-goober
+```
+
+when you add `babel-plugin-transform-goober` to your babel config it allows for the same formatting as `styled-components`, think of `styled.div`, else it will be restricted to `styled('div')`.
 
 ## whatwg-fetch
 
