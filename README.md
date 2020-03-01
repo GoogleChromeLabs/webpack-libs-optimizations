@@ -13,10 +13,12 @@ Contents:
 * [`babel-polyfill`](#babel-polyfill)
 * [`core-js`](#core-js)
 * [`date-fns`](#date-fns)
+* [`handlebars`](#handlebars)
 * [`lodash`](#lodash)
 * [`lodash-es`](#lodash-es)
 * [`moment`](#moment)
 * [`react`](#react)
+* [`ractive`](#ractive)
 * [`reactstrap`](#reactstrap)
 * [`react-bootstrap`](#react-bootstrap)
 * [`react-router`](#react-router)
@@ -144,6 +146,40 @@ import _format from 'date-fns/format';
 _format(new Date(2014, 1, 11), 'MM/DD/YYYY');
 ```
 
+## handlebars
+
+Handlebars is a templating library. [npm package](https://www.npmjs.com/package/handlebars)
+
+### Switch to build-time compiling
+
+> ⚠ Use with caution / How to enable is ↓ / Added by [@danburzo](https://github.com/danburzo)
+
+If you use `Handlebars.compile()` to compile templates in your app, switch to [`handlebars-loader`](https://github.com/pcardune/handlebars-loader). This way, you’ll compile templates during a webpack build – and won’t need to bundle the template-parsing part of the library.
+
+Here’s how to avoid bundling the template-parsing part of Handlebars:
+
+* Switch to [`handlebars-loader`](https://github.com/pcardune/handlebars-loader), if you haven’t yet
+* And either:
+   * replace all `import Handlebars from 'handlebars'` with `import Handlebars from 'handlebars/runtime'`
+   * or alias the module using `resolve.alias`:
+   
+      ```js
+      // webpack.config.js
+      {
+        // ...
+        resolve: {
+          alias: {
+            // Tip: `$` in the end of `handlebars$` means “exact match”: https://webpack.js.org/configuration/resolve/#resolvealias
+            // This’d disable aliasing – and prevent breaking the code – for imports like `handlebars/something.js`
+            handlebars$: path.resolve(__dirname, 'node_modules/handlebars/runtime.js')
+          }
+        }
+        // ...
+      }
+      ```
+
+**Use this optimization with caution.** Make sure your code does not use `Handlebars.compile()` anywhere, or your app will break.
+
 ## lodash
 
 Lodash is an utility library. [npm package](https://www.npmjs.com/package/lodash)
@@ -218,6 +254,38 @@ Moment.js is a library for working with dates. [npm package](https://www.npmjs.c
 By default, Moment.js ships with 160+ minified KBs of localization files. If you app is only available in a few languages, you won’t need all these files. Use [`moment-locales-webpack-plugin`](https://github.com/iamakulov/moment-locales-webpack-plugin) to remove the unused ones.
 
 **Use the plugin with caution.** The default settings remove all locales; this might break your app if you use some of them.
+
+## ractive
+
+Ractive is a UI templating library. [npm package](https://www.npmjs.com/package/ractive)
+
+### Switch to build-time compiling
+
+> ⚠ Use with caution / How to enable is ↓ / Added by [@danburzo](https://github.com/danburzo)
+
+If you’re compiling your Ractive templates on the go (e.g., by passing strings to `Ractive({ template })`, switch to [`ractive-loader`](https://www.npmjs.com/package/ractive-loader). This way, you’ll compile templates during a webpack build – and won’t need to bundle the template-parsing part of the library.
+
+Here’s how to avoid bundling the template-parsing part of Ractive:
+
+* Switch to [`ractive-loader`](https://www.npmjs.com/package/ractive-loader), if you haven’t yet
+* And alias the `ractive` module to the Ractive runtime using `resolve.alias`:
+   
+   ```js
+   // webpack.config.js
+   {
+     // ...
+     resolve: {
+       alias: {
+         // Tip: `$` in the end of `ractive$` means “exact match”: https://webpack.js.org/configuration/resolve/#resolvealias
+         // This’d disable aliasing – and prevent breaking the code – for imports like `ractive/something.js`
+         ractive$: path.resolve(__dirname, 'node_modules/ractive/runtime.min.js')
+       }
+     }
+     // ...
+   }
+   ```
+   
+**Use this optimization with caution.** Make sure your code does not compile any templates on the fly, or your app will break. Compiling templates on the fly happens whenever you pass a string to `Ractive({ template: ... })` or `Ractive.parse()`.
 
 ## react
 
@@ -380,44 +448,6 @@ import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 ```
-
-### Templating languages: bundle just the runtime
-
-> ⚠ Use with caution / How to enable is ↓ / Added by [@danburzo](https://github.com/danburzo)
-
-Some libraries, such as [Handlebars](https://handlebarsjs.com/), [Ractive](https://ractive.js.org/) or [Vue](https://vuejs.org/), come with their own templating language. If you're importing templates files in your app using a Webpack loader ([handlebars-loader](https://github.com/pcardune/handlebars-loader), [ractive-loader](https://github.com/rstacruz/ractive-loader), etc.), you won't need the template-parsing part of the library in your bundle, as the templates will have been pre-compiled at build-time. Including just the _runtime_ — that is, the library without the template parser — depends on the library:
-
-Library | How to include the runtime
-------- | --------------------------
-Vue | The default package already includes just the runtime when you `import Vue from 'vue'`.
-Handlebars | Replace `import Handlebars from 'handlebars'` with `import Handlebars from 'handlebars/runtime'` or add an entry to `resolve.alias` in Webpack. 
-Ractive | Add an entry to `resolve.alias` in Webpack.
-
-The `resolve.alias` Webpack configuration helps you point the imports to the right file from the package:
-
-```js
-// webpack.config.js
-{
-  // ...
-  resolve: {
-    alias: {
-      // Tip: to locate the runtime for a library, look into its package folder
-      // for a Javascript file with `runtime` in its name.
-      ractive: path.resolve(__dirname, 'node_modules/ractive/runtime.min.js')
-    }
-  }
-  // ...
-}
-```
-
-...then import the library normally:
-
-```js
-// will include just the runtime
-import Ractive from 'ractive'; 
-```
-
-**Use this optimization with caution.** Make sure your code does not compile any templates on the fly, or your app will break. This happens whenever you pass template _strings_ to your library.
 
 # License
 
