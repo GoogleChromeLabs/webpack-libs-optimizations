@@ -17,6 +17,7 @@ Contents:
 * [`lodash`](#lodash)
 * [`lodash-es`](#lodash-es)
 * [`moment`](#moment)
+* [`moment-timezone`](#moment-timezone)
 * [`react`](#react)
 * [`ractive`](#ractive)
 * [`reactstrap`](#reactstrap)
@@ -251,9 +252,21 @@ Moment.js is a library for working with dates. [npm package](https://www.npmjs.c
 
 > ⚠ Use with caution / [How to enable](https://github.com/iamakulov/moment-locales-webpack-plugin) / Added by [@iamakulov](https://twitter.com/iamakulov)
 
-By default, Moment.js ships with 160+ minified KBs of localization files. If you app is only available in a few languages, you won’t need all these files. Use [`moment-locales-webpack-plugin`](https://github.com/iamakulov/moment-locales-webpack-plugin) to remove the unused ones.
+By default, Moment.js ships with 160+ minified KBs of localization files. If your app is only available in a few languages, you won’t need all these files. Use [`moment-locales-webpack-plugin`](https://github.com/iamakulov/moment-locales-webpack-plugin) to remove the unused ones.
 
 **Use the plugin with caution.** The default settings remove all locales; this might break your app if you use some of them.
+
+## moment-timezone
+
+Moment Timezone is a plugin for Moment.js with full support for time zone calculations. [npm package](https://www.npmjs.com/package/moment-timezone)
+
+### Remove unused data with `moment-timezone-data-webpack-plugin`
+
+> ⚠ Use with caution / [How to enable](https://github.com/gilmoreorless/moment-timezone-data-webpack-plugin) / Added by [@iamnotyourbroom](https://twitter.com/iamnotyourbroom)
+
+By default, Moment Timezone includes as much time zone data as possible via a 900+ KB JSON file. In some cases this data includes dates in the 19th century. If your app can work with a smaller range of dates, or only needs specific time zones, most of that data is redundant. Use [`moment-timezone-data-webpack-plugin`](https://github.com/gilmoreorless/moment-timezone-data-webpack-plugin) to remove the unused data.
+
+**Use the plugin with caution.** Removing too much time zone data can cause subtle date calculation bugs. Make sure your app still has all the data it needs to function correctly.
 
 ## ractive
 
@@ -297,13 +310,19 @@ React is a library for building user interfaces. [npm package](https://www.npmjs
 
 React doesn’t perform `propTypes` checks in production, but the `propTypes` declarations still occupy a part of the bundle. Use [`babel-plugin-transform-react-remove-prop-types`](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) to remove them from during building.
 
-### Replace with Preact
+### Migrate to an alternative React-like Library
 
-> ⚠ Use with caution / [How to migrate](https://preactjs.com/guide/switching-to-preact) / Added by [@iamakulov](https://twitter.com/iamakulov)
+> ⚠ Use with caution / Added by [@iamakulov](https://twitter.com/iamakulov) & [@kurtextrem](https://twitter.com/kurtextrem)
 
-[Preact](https://github.com/developit/preact) is a smaller React alternative with a similar API. Switching to it saves you 250 minified KBs (tested with `preact@8.2.7` + `preact-compat@3.17.0` vs. `react@16.2.0` + `react-dom@16.2.0`).
+There are alternatives to React with a similar API that have a smaller size or a higher performance, but lack some features (e.g., fragments, portals, or synthetic events).
 
-**Migrate to Preact with caution.** Preact is not 100% compatible with React – i.e. it doesn’t support synthetic events and [some React 16 features](https://github.com/developit/preact-compat/issues/432). However, many projects still can be migrated without any codebase changes. See [the migration guide](https://preactjs.com/guide/switching-to-preact).
+- [Preact](https://github.com/developit/preact) | The smallest React alternative (`preact@8.3.1` + `preact-compat@3.18.3` is 7.6 kB gzipped; `react@16.4.0` + `react-dom@16.4.0` is 31.4 kB gzipped) | No synthetic events | IE8 supported with polyfills
+
+- [Nerv](https://github.com/NervJS/nerv) | Smaller than React, larger than Preact (`nervjs@1.3.3` is 9.8 kB gzipped, compat is not needed; `react@16.4.0` + `react-dom@16.4.0` is 31.4 kB gzipped) | The goal of Nerv is to have 100% the same API (without Fiber and Suspense), see [NervJS/nerv#10](https://github.com/NervJS/nerv/issues/10#issuecomment-356913486) for details | IE8 supported
+
+- [Inferno](https://github.com/infernojs/inferno) | Smaller than React, larger than Preact and Nerv (`inferno@5.4.2` + `inferno-compat@5.4.2` is 11.3 kB gzipped; `react@16.4.0` + `react-dom@16.4.0` is 31.4 kB gzipped) | Higher runtime performance than React, the highest performance among all React alternatives, [manual optimization possibilities offered](https://infernojs.org/docs/guides/optimizations) | Partial synthetic events | IE8 unsupported natively
+
+**Migrate to alternatives with caution.** Some of the alternatives don’t have synthetic events or are lacking some React 16 features ([Preact issue](https://github.com/developit/preact-compat/issues/432), [Inferno issue](https://github.com/infernojs/inferno/issues/501), [Nerv issue](https://github.com/NervJS/nerv/issues/5)). However, many projects still can be migrated without any codebase changes. See the migration guides: [Preact](https://preactjs.com/guide/switching-to-preact), [Inferno](https://infernojs.org/docs/guides/switching-to-inferno), [Nerv](https://github.com/NervJS/nerv#switching-to-nerv-from-react).
 
 ## reactstrap
 
