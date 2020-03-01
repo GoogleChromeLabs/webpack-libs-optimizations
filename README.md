@@ -13,17 +13,21 @@ Contents:
 * [`babel-polyfill`](#babel-polyfill)
 * [`core-js`](#core-js)
 * [`date-fns`](#date-fns)
+* [`handlebars`](#handlebars)
 * [`lodash`](#lodash)
 * [`lodash-es`](#lodash-es)
 * [`moment`](#moment)
 * [`moment-timezone`](#moment-timezone)
 * [`react`](#react)
+* [`ractive`](#ractive)
 * [`reactstrap`](#reactstrap)
 * [`react-bootstrap`](#react-bootstrap)
 * [`react-router`](#react-router)
 * [`styled-components`](#styled-components)
 * [`whatwg-fetch`](#whatwg-fetch)
 * [Solutions that work with multiple libraries](#solutions-that-work-with-multiple-libraries)
+    * [`babel-plugin-transform-imports`](#babel-plugin-transform-imports)
+    * [Templating languages: bundle just the runtime](#templating-languages-bundle-just-the-runtime)
 
 ## async
 
@@ -143,6 +147,40 @@ import _format from 'date-fns/format';
 _format(new Date(2014, 1, 11), 'MM/DD/YYYY');
 ```
 
+## handlebars
+
+Handlebars is a templating library. [npm package](https://www.npmjs.com/package/handlebars)
+
+### Switch to build-time compiling
+
+> ⚠ Use with caution / How to enable is ↓ / Added by [@danburzo](https://github.com/danburzo)
+
+If you use `Handlebars.compile()` to compile templates in your app, switch to [`handlebars-loader`](https://github.com/pcardune/handlebars-loader). This way, you’ll compile templates during a webpack build – and won’t need to bundle the template-parsing part of the library.
+
+Here’s how to avoid bundling the template-parsing part of Handlebars:
+
+* Switch to [`handlebars-loader`](https://github.com/pcardune/handlebars-loader), if you haven’t yet
+* And either:
+   * replace all `import Handlebars from 'handlebars'` with `import Handlebars from 'handlebars/runtime'`
+   * or alias the module using `resolve.alias`:
+   
+      ```js
+      // webpack.config.js
+      {
+        // ...
+        resolve: {
+          alias: {
+            // Tip: `$` in the end of `handlebars$` means “exact match”: https://webpack.js.org/configuration/resolve/#resolvealias
+            // This’d disable aliasing – and prevent breaking the code – for imports like `handlebars/something.js`
+            handlebars$: path.resolve(__dirname, 'node_modules/handlebars/runtime.js')
+          }
+        }
+        // ...
+      }
+      ```
+
+**Use this optimization with caution.** Make sure your code does not use `Handlebars.compile()` anywhere, or your app will break.
+
 ## lodash
 
 Lodash is an utility library. [npm package](https://www.npmjs.com/package/lodash)
@@ -229,6 +267,38 @@ Moment Timezone is a plugin for Moment.js with full support for time zone calcul
 By default, Moment Timezone includes as much time zone data as possible via a 900+ KB JSON file. In some cases this data includes dates in the 19th century. If your app can work with a smaller range of dates, or only needs specific time zones, most of that data is redundant. Use [`moment-timezone-data-webpack-plugin`](https://github.com/gilmoreorless/moment-timezone-data-webpack-plugin) to remove the unused data.
 
 **Use the plugin with caution.** Removing too much time zone data can cause subtle date calculation bugs. Make sure your app still has all the data it needs to function correctly.
+
+## ractive
+
+Ractive is a UI templating library. [npm package](https://www.npmjs.com/package/ractive)
+
+### Switch to build-time compiling
+
+> ⚠ Use with caution / How to enable is ↓ / Added by [@danburzo](https://github.com/danburzo)
+
+If you’re compiling your Ractive templates on the go (e.g., by passing strings to `Ractive({ template })`, switch to [`ractive-loader`](https://www.npmjs.com/package/ractive-loader). This way, you’ll compile templates during a webpack build – and won’t need to bundle the template-parsing part of the library.
+
+Here’s how to avoid bundling the template-parsing part of Ractive:
+
+* Switch to [`ractive-loader`](https://www.npmjs.com/package/ractive-loader), if you haven’t yet
+* And alias the `ractive` module to the Ractive runtime using `resolve.alias`:
+   
+   ```js
+   // webpack.config.js
+   {
+     // ...
+     resolve: {
+       alias: {
+         // Tip: `$` in the end of `ractive$` means “exact match”: https://webpack.js.org/configuration/resolve/#resolvealias
+         // This’d disable aliasing – and prevent breaking the code – for imports like `ractive/something.js`
+         ractive$: path.resolve(__dirname, 'node_modules/ractive/runtime.min.js')
+       }
+     }
+     // ...
+   }
+   ```
+   
+**Use this optimization with caution.** Make sure your code does not compile any templates on the fly, or your app will break. Compiling templates on the fly happens whenever you pass a string to `Ractive({ template: ... })` or `Ractive.parse()`.
 
 ## react
 
