@@ -20,6 +20,7 @@ Contents:
 * [`moment-timezone`](#moment-timezone)
 * [`react`](#react)
 * [`ractive`](#ractive)
+* [`ramda`](#ramda)
 * [`reactstrap`](#reactstrap)
 * [`react-bootstrap`](#react-bootstrap)
 * [`react-router`](#react-router)
@@ -299,6 +300,32 @@ Here’s how to avoid bundling the template-parsing part of Ractive:
    ```
    
 **Use this optimization with caution.** Make sure your code does not compile any templates on the fly, or your app will break. Compiling templates on the fly happens whenever you pass a string to `Ractive({ template: ... })` or `Ractive.parse()`.
+
+## ramda
+
+Ramda is a practical functional library. [npm package](https://www.npmjs.com/package/ramda)
+
+### Enable `babel-plugin-ramda`
+
+> ⚠ Use with caution / [How to enable](https://github.com/megawac/babel-plugin-ramda) / Added by [@webistomin](https://github.com/webistomin)
+
+[`babel-plugin-ramda`](https://github.com/megawac/babel-plugin-ramda) remove unused ramda dependencies, without forcing the user to cherry pick methods manually:
+
+```js
+import R, { map } from 'ramda';
+map(R.add(1), [1, 2, 3]);
+```
+
+↓
+
+```js
+import add from 'ramda/src/add';
+import map from 'ramda/src/map';
+
+map(add(1), [1, 2, 3]);
+```
+
+Note: You must be using ES6 imports (both specifiers and default work) to load ramda.
 
 ## react
 
